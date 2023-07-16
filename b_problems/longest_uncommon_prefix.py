@@ -1,6 +1,6 @@
 """
 ABC285
-B - Longest Uncommon Prefix: 途中
+B - Longest Uncommon Prefix: 結果AC
 """
 N = int(input())
 S = input()
