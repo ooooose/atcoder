@@ -19,15 +19,40 @@
 #   answers.append(min(target))
 # print(max(answers))
 
+# N = int(input())
+# beans = []
+# for i in range(N):
+#   beans.append(list(map(int, input().split())))
+# beans = sorted(beans, reverse=True)
+# minimum_taste = {}
+# for i in beans:
+#   if i[1] in beans:
+#     minimum_taste[i[1]] = min(minimum_taste[i[1]], i[0])
+#   else:
+#     minimum_taste[i[1]] = i[0]
+# print(max(minimum_taste.values()))
+
+# N = int(input())
+# Beans = [list(map(int,input().split())) for n in range(N)]
+
+# dict = {}
+# for A, C in Beans:
+#     if C in dict.keys():
+#         if dict[C] > A:
+#             dict[C] = A
+#     else:
+#         dict[C] = A
+# print (max(dict.values()))
+
+
 N = int(input())
-beans = []
-for i in range(N):
-  beans.append(list(map(int, input().split())))
-beans = sorted(beans, reverse=True)
-minimum_taste = {}
-for i in beans:
-  if i[1] in beans:
-    minimum_taste[i[1]] = min(minimum_taste[i[1]], i[0])
+beans = [list(map(int, input().split())) for n in range(N)]
+
+dict = {}
+for a, c in beans:
+  if c in dict.keys():
+    if dict[c] > a:
+      dict[c] = a
   else:
-    minimum_taste[i[1]] = i[0]
-print(max(minimum_taste.values()))
+    dict[c] = a
+print(max(dict.values()))
