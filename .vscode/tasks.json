@@ -1,0 +1,22 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+      {
+          "label": "Build with gcc",
+          "type": "shell",
+          "command": "g++",
+          "args": [
+              "-std=c++17",
+              "-gdwarf-3",
+              "test.cpp",
+              "-o",
+              "a.out",
+              "--debug"
+          ],
+          "group": {
+              "kind": "build",
+              "isDefault": true
+          }
+      }
+  ]
+}
