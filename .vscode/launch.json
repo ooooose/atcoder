@@ -2,13 +2,13 @@
   "version": "0.2.0",
   "configurations": [
       {
-          "name": "(lldb) Launch",
+          "name": "(LLDB) Debug",
           "type": "lldb",
           "request": "launch",
-          "program": "${workspaceFolder}/a.out",
+          "program": "${fileDirname}/${fileBasenameNoExtension}",
           "args": [],
-          "cwd": "${workspaceFolder}",
-          "preLaunchTask": "Build with gcc"
+          "cwd": "${fileDirname}/",
+          "preLaunchTask": "g++ build active file",
       }
   ]
 }
