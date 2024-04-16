@@ -5,25 +5,14 @@ using namespace std;
 int main() {
     int n;
     cin >> n;
-    int x = 0;
-    int y = 0;
-    int z = 0;
 
-    while (x < n) {
-        cout << x << ' ' << y << ' ' << z << endl;
-        z++;
-        if (z == n - y - x + 1) {
-            z = 0;
-            y += 1;
+    rep(x, n + 1) {
+        rep(y, n + 1) {
+            rep (z, n + 1) {
+                if (x + y + z <= n) cout << x << ' ' << y << ' ' << z << endl;
+            }
         }
-        if (y == n - x - z + 1) {
-            y = 0;
-            x += 1;
-        }
-        if (x == n) break;
     }
-    cout << x << ' ' << y << ' ' << z << endl;
-
     return 0;
 }
 
