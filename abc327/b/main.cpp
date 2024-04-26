@@ -5,7 +5,7 @@ using namespace std;
 int main() {
     long long b;
     cin >> b;
-    rep(a, 15) {
+    for (int a = 1; a <= 15; a++) {
         long long x = 1;
         rep(i, a) x *= a;
         if (x == b) {
