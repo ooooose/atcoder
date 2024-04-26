@@ -5,24 +5,14 @@ using namespace std;
 int main() {
     int n;
     string s;
-    cin >> n;
-    cin >> s;
-    int ans = 0;
-    rep(i, n) {
-        if (s.at(i) == 'a' || s.at(i) == 'b') {
-            ans++;
-        }
-        else {
-            ans = 0;
-        }
-
-        if (ans >= 2) {
-            cout << "Yes" << endl;
-            return 0;
-        }
+    cin >> n >> s; 
+    bool yes = false;
+    for (int i = 0; i < n - 1;  i++) {
+        if (s[i] == 'a' and s[i + 1] == 'b') yes = true;
+        if (s[i] == 'b' and s[i + 1] == 'a') yes = true;
     }
+    cout << (yes ? "Yes" : "No") << endl;
 
-    cout << "No" << endl;
     return 0;
 }
 
