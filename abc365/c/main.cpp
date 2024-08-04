@@ -2,28 +2,31 @@
 using namespace std;
 #define rep(i, n) for (int i = 0; i < (n); i++)
 
+using ll = long long;
+
 int main() {
-    int n, m;
+    int n; ll m;
     cin >> n >> m;
     vector<int> a(n);
-    int total = 0;
-    int target = 0;
-    rep(i, n) { 
-        cin >> a.at(i);
-        total += a.at(i);
-        target = max(a.at(i), target);
-    }
-    if (total <= m) {
-        cout << "infinite" << endl;
-        return 0;
-    }
-    for (int i = 1; i < target; i++) {
-        int count = 0;
-        rep(j, n) count += min(a[j], i);
-        if (count > m) { 
-            cout << i - 1 << endl;
-            return 0;
+    rep(i, n) cin >> a[i];
+    auto f = [&](int x) -> bool {
+        ll s = 0;
+        rep(i, n) s += min(x, a[i]);
+        return s <= m;
+    };
+
+    const int INF = 1001001001;
+
+    if (f(INF)) cout << "infinite" << endl;
+    else {
+        int ac = 0, wa = INF;
+        while (ac + 1 < wa) {
+            int wj = (ac + wa) / 2;
+            if (f(wj)) ac = wj; else wa = wj;
         }
+        cout << ac << endl;
     }
+
+    return 0;
 }
 
