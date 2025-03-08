@@ -1,7 +1,16 @@
-S = gets.chomp
+s = gets.chomp
+n = s.length
+ans = 0
 
-A_matches = S.scan(/A{2,}/)
-B_matches = S.scan(/B{2,}/)
-C_matches = S.scan(/C{2,}/)
+(0...n).each do |i|
+  (i + 1...n).each do |j|
+    (j + 1...n).each do |k|
+      if (j - i == k - j) && (s[i] == 'A') && (s[j] == 'B') && (s[k] == 'C')
+        ans += 1
+      end
+    end
+  end
+end
 
-puts A_matches.size + B_matches.size + C_matches.size
+puts ans
+
