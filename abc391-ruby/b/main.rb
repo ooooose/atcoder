@@ -19,7 +19,6 @@ s_list.each_with_index do |s, i|
         answer_check = false
       end
     end
-    p answer_check
     if answer_check
       puts [i + 1, j + 1].join(' ')
       return
