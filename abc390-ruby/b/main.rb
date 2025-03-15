@@ -1,12 +1,14 @@
 n = gets.chomp.to_i
-a_list = gets.chomp.split(' ').map(&:to_i)
+a = gets.chomp.split(' ').map(&:to_i)
 
-bai_list = []
-(n - 1).times do |i|
-  bai_list << a_list[i + 1].div(a_list[i]).to_f
+flag = true
+(n - 2).times do |i|
+  if a[i] * a[i + 2] != a[i + 1] * a[i + 1]
+    flag = false
+  end
 end
 
-if bai_list.uniq.size == 1
+if flag
   puts "Yes"
 else
   puts "No"
