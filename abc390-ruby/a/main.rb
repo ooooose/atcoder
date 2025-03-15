@@ -1,16 +1,12 @@
-a_list = gets.chomp.split(' ').map(&:to_i)
-sorted_list = a_list.sort
+a = gets.chomp.split(' ').map(&:to_i)
 
-count = 0
-
-a_list.each_with_index do |a, i|
-  if a != sorted_list[i]
-    count += 1
+4.times do |i|
+  b = a.clone
+  b[i], b[i + 1] = b[i + 1], b[i]
+  if b == [1, 2, 3, 4, 5]
+    puts "Yes"
+    return
   end
 end
 
-if count == 2
-  puts "Yes"
-else
-  puts "No"
-end
+puts "No"
