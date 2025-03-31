@@ -5,15 +5,16 @@ using namespace std;
 int main() {
     int n;
     cin >> n;
-    vector<int> s(n);
-    vector<int> t(n);
-    rep(i, n) cin >> s[i];
-    rep(i, n) cin >> t[i];
-    int ans = 0;
+    string s;
+    string t;
+    int count = 0;
+    cin >> s >> t;
     rep(i, n) {
-        if (s[i] != t[i]) ans++;
+        if (s.at(i) != t.at(i)) {
+            count++;
+        }
     }
-    cout << ans << endl;
+    cout << count << endl;
     return 0;
 }
 
