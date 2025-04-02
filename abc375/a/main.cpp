@@ -8,11 +8,7 @@ int main() {
     string s;
     cin >> s;
     int ans = 0;
-    rep(i, n) {
-        if (s.at(i) == '.') {
-            ans++;
-        }
-    }
+    rep(i, n) if (s[i] == '#' && s[i + 1] == '.' && s[i + 2] == '#') ans++;
     cout << ans << endl;
     return 0;
 }
