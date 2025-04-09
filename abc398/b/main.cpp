@@ -8,13 +8,16 @@ int main() {
     sort(a.begin(), a.end());
     vector<int> b;
     int count = 0;
-    rep(i, a.size()) {
+    rep(i, a.size() - 1) {
         if (a[i] == a[i + 1]) {
             count++;
         } else {
             b.push_back(count);
             count = 0;
         }
+        if (i == a.size() - 2) {
+            b.push_back(count);
+        };
     }
     if (find(b.begin(), b.end(), 2) != b.end() && find(b.begin(), b.end(), 1) != b.end()) {
         cout << "Yes" << endl;
