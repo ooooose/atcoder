@@ -2,28 +2,16 @@
 using namespace std;
 #define rep(i, n) for (int i = 0; i < (n); i++)
 
-int main() {
-    vector<int> a(7);
-    rep(i, 7) cin >> a[i];
-    sort(a.begin(), a.end());
-    vector<int> b;
-    int count = 0;
-    rep(i, a.size() - 1) {
-        if (a[i] == a[i + 1]) {
-            count++;
-        } else {
-            b.push_back(count);
-            count = 0;
-        }
-        if (i == a.size() - 2) {
-            b.push_back(count);
-        };
+int main(){
+    vector<int> bk(13,0);
+    rep (i, 7) {
+      int x;
+      cin >> x;
+      bk[x-1]++;
     }
-    if (find(b.begin(), b.end(), 2) != b.end() && find(b.begin(), b.end(), 1) != b.end()) {
-        cout << "Yes" << endl;
-    } else {
-        cout << "No" << endl;
-    }
+    sort(bk.rbegin(),bk.rend());
+    if(bk[0]>=3 && bk[1]>=2){cout << "Yes\n";}
+    else{cout << "No\n";}
     return 0;
-}
+  }
 
