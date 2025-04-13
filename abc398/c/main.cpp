@@ -14,14 +14,14 @@ int main() {
         m[s[i]]++;
     }
     
-    for (int i = n; i >= 0; i--) {
+    for (int i = n - 1; i >= 0; i--) {
         if (m[s[i]] == 1) {
             cout << i + 1 << endl;
             return 0;
         }
     }
+
     cout << -1 << endl;
     return 0;
-
 }
 
