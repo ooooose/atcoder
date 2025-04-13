@@ -1,13 +1,14 @@
 #include<bits/stdc++.h>
 using namespace std;
+using ll = long long;
 #define rep(i, n) for (int i = 0; i < (n); i++)
 
 int main() {
     int n;
     cin >> n;
-    vector<int> s(n);
+    vector<ll> s(n);
     rep(i, n) cin >> s[i];
-    unordered_map<int, int> m;
+    unordered_map<ll, int> m;
     
     rep(i, n) {
         m[s[i]]++;
