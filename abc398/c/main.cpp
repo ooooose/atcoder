@@ -1,27 +1,35 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
-#define rep(i, n) for (int i = 0; i < (n); i++)
 
 int main() {
     int n;
     cin >> n;
-    vector<ll> s(n);
-    rep(i, n) cin >> s[i];
-    unordered_map<ll, int> m;
-    
-    rep(i, n) {
-        m[s[i]]++;
+    vector<ll> a(n);
+    unordered_map<ll, vector<int>> m;
+
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+        m[a[i]].push_back(i);
     }
-    
-    for (int i = n - 1; i >= 0; i--) {
-        if (m[s[i]] == 1) {
-            cout << i + 1 << endl;
-            return 0;
+
+    ll max_value = -1;
+    int result_index = -1;
+    for (auto& [key, indices] : m) {
+        if (indices.size() == 1) {
+            if (key > max_value) {
+                max_value = key;
+                result_index = indices[0] + 1;
+            }
         }
     }
 
-    cout << -1 << endl;
+    if (result_index != -1) {
+        cout << result_index << endl;
+    } else {
+        cout << -1 << endl;
+    }
+
     return 0;
 }
 
