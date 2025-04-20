@@ -7,21 +7,28 @@ int main() {
     cin >> n;
     vector<int> a(n);
     rep(i,n) cin >> a[i];
-    int ans = 0;
-    rep(i,n-1) {
-        set<int> s;
-        set<int> t;
-        rep(j, n) {
-            if (j <= i) {
-                s.insert(a[j]);
-            } else {
-                t.insert(a[j]);
-            }
-            int x = s.size() + t.size();
-            ans = max(ans, x);
+    vector<int> numl(n+1), numr(n+1);
+    {
+        set<int> st;
+        for (int i = 0; i < n; i++) {
+            st.insert(a[i]);
+            numl[i+1] = st.size();
         }
     }
+    {
+        set<int> st;
+        for (int i = n-1; i >= 0; i--) {
+            st.insert(a[i]);
+            numr[i] = st.size();
+        }
+    }
+
+    int ans = 0;
+    for(int i = 0; i < n; i++) {
+        ans = max(ans, numl[i] + numr[i]);
+    }
     cout << ans << endl;
+    
     return 0;
 }
 
