@@ -7,11 +7,11 @@ int main() {
     ll n;
     cin >> n;
     ll ans = 0;
-    for(int a = 1; a < 60; a++) {
+    for (int a = 1; a <= 2; a++) {
         ll x = n;
-        rep(i, a) x/= 2;
+        rep(i, a) x /= 2;
         ll m = sqrt(x);
-        ans += (m+1) / 2;
+        ans += m;
     }
     cout << ans << endl;
     return 0;
