@@ -10,7 +10,7 @@ int main() {
     for (int a = 1; a <= 2; a++) {
         ll x = n;
         rep(i, a) x /= 2;
-        ll m = sqrt(x);
+        ll m = sqrtl(x);
         ans += m;
     }
     cout << ans << endl;
