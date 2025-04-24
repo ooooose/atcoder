@@ -8,17 +8,17 @@ int main() {
     int id = 0;
     vector<int> a(n);
     rep(i,n) cin >> a[i];
-    int ans = 0;
+    long ans = 0;
     rep(i, n) {
         if (i == 0) continue;
         int target = a[i] / 2;
         for (int j = id; j < n; j++) {
             if (a[j] > target) {
+                id = j;
                 break;
             }
-            id = j + 1;
         }
-        ans+=id;
+        ans += id;
     }
     cout << ans << endl;
     return 0;
