@@ -9,18 +9,11 @@ int main() {
     vector<int> b(m);
     rep(i, n) cin >> a[i];
     rep(i, m) cin >> b[i];
-    int min_a = *min_element(a.begin(), a.end());
-    rep(i, m) {
-        rep(j, n) {
-            if (b[i] < min_a) {
-                cout << -1 << endl;
-                break;
-            }
-            if (a[j] <= b[i]) {
-                cout << j + 1 << endl;
-                break;
-            }
-        }
+    rep(i,n-1) a[i+1] = min(a[i+1], a[i]);
+    rep(j, m) {
+        int i = lower_bound(a.begin(), a.end(), b[j], greater<int>()) - a.begin();
+        if (i ==n) cout << -1 << endl;
+        else cout << i+1 << endl;
     }
     return 0;
 }
