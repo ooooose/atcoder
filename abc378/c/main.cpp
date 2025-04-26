@@ -5,11 +5,11 @@ using namespace std;
 int main() {
     int n;
     cin >> n;
-    unordered_map<int, int> a;
+    map<int, int> a;
     rep(i,n) {
         int x;
         cin >> x;
-        if (a.find(x) != a.end()) {
+        if (a.contains(x)) {
             cout << a[x] << " ";
         } else {
             cout << -1 << " ";
