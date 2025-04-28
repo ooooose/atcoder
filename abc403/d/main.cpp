@@ -1,84 +1,47 @@
 #include <bits/stdc++.h>
 using namespace std;
+#define rep(i, n) for (int i = 0; i < (n); i++)
+
+int solve(vector<int> a) {
+    int n = a.size();
+    vector dp(n+1, vector<int>(2));
+    rep(i,n) {
+        dp[i+1][1] = max(dp[i][0], dp[i][1]);
+        dp[i+1][0] = dp[i][1] + a[i];
+    }
+    int mx = max(dp[n][0], dp[n][1]);
+    int sum = 0;
+    rep(i,n) sum += a[i];
+    return sum - mx;
+}
+
 
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    
-    int n;
-    long long d;
+    int n, d;
     cin >> n >> d;
-    
-    vector<long long> a(n);
-    for (int i = 0; i < n; i++) {
-        cin >> a[i];
+    const int M = 1000005;
+    vector<int> cnt(M);
+    rep(i,n) {
+        int a;
+        cin >> a;
+        cnt[a]++;
     }
 
-    if (d == 0) {
-        unordered_map<long long, int> freq;
-        for (long long x : a) {
-            freq[x]++;
-        }
-        
-        int total_removal = 0;
-        for (auto [_, count] : freq) {
-            total_removal += (count - 1);
-        }
-        
-        cout << total_removal << endl;
-        return 0;
-    }
-
-    unordered_map<long long, int> freq;
-    for (long long x : a) {
-        freq[x]++;
-    }
-    unordered_map<long long, vector<long long>> graph;
-    set<long long> conflict_nodes;
-    
-    for (const auto& [val, _] : freq) {
-        if (freq.count(val + d)) {
-            graph[val].push_back(val + d);
-            graph[val + d].push_back(val);
-            conflict_nodes.insert(val);
-            conflict_nodes.insert(val + d);
+    int ans = 0;
+    if (d==0) {
+        rep(i, M) {
+            if (cnt[i] > 0) ans += cnt[i]-1;
         }
     }
-
-    unordered_map<long long, int> color;
-    int total_removal = 0;
-
-    for (long long start : conflict_nodes) {
-        if (color.count(start)) continue;
-
-        queue<long long> q;
-        q.push(start);
-        color[start] = 0;
-        
-        int count0 = 0, count1 = 0;
-        
-        while (!q.empty()) {
-            long long curr = q.front();
-            q.pop();
-
-            if (color[curr] == 0) {
-                count0 += freq[curr];
-            } else {
-                count1 += freq[curr];
+    else {
+        rep(si,d) {
+            vector<int> a;
+            for (int i = si; i < M; i += d) {
+                a.push_back(cnt[i]);
             }
-
-            for (long long next : graph[curr]) {
-                if (!color.count(next)) {
-                    color[next] = 1 - color[curr];
-                    q.push(next);
-                }
-            }
+            ans += solve(a);
         }
-
-        total_removal += min(count0, count1);
     }
-    
-    cout << total_removal << endl;
-    
+    cout << ans << endl;
     return 0;
 }
