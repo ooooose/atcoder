@@ -3,25 +3,28 @@ using namespace std;
 #define rep(i, n) for (int i = 0; i < (n); i++)
 
 int main() {
-    int n, m;
+    long long n;
+    int m;
     cin >> n >> m;
-    vector<int> x(m);
-    rep(i,m) cin >> x[i];
-    vector<int> x_diff(m,0);
-    rep(i,m-1) x_diff[i] = x[i+1] - x[i];
-    x_diff.back() = n - x.back() + 1;
-    int ans = 0;
-    rep(i,m) {
-        int a;
-        cin >> a;
-        if (a!=x_diff[i]) {
+    vector<pair<int, long long>> xa(m);
+    rep(i,m) cin >> xa[i].first;
+    rep(i,m) cin >> xa[i].second;
+    sort(xa.begin(), xa.end());
+    long long sum = 0, sum_idx = 0;
+    rep(i, m) {
+        if( sum < xa[i].first -1) {
             cout << -1 << endl;
             return 0;
         }
-        rep(j, x_diff[i]-1) ans+=j+1;
+        sum += xa[i].second;
+        sum_idx += xa[i].second * xa[i].first;
     }
-    cout << ans << endl;
-    
+    if(sum != n) {
+        cout << -1 << endl;
+        return 0;
+    }
+
+    cout << n * (n + 1) / 2 - sum_idx << endl;
     return 0;
 }
 
