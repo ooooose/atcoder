@@ -10,13 +10,14 @@ int main() {
     rep(i, n) {
         int h;
         cin >> h;
-        int x = h / 5;
-        h -= 5 * (h / 5);
-        int mod = h % 5;
+        int x = int(h / 5);
         t += x * 3;
-        if (mod <= 2) t += mod;
-        else if (mod == 3) t += 3;
-        else if (mod == 4) t += 3;
+        h -= 5 * x;
+        while(h > 0) {
+            t++;
+            if (t % 3 == 0) h -= 3;
+            else h -= 1;
+        }
     }
     cout << t << endl;
     return 0;
