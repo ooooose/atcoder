@@ -18,6 +18,8 @@ int main() {
             cnt = 0;
         }
     }
+
+    if (cnt > 0) ans += (cnt+1)*cnt/2;
     cout << ans << endl;
     return 0;
 }
