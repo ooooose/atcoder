@@ -5,21 +5,20 @@ using namespace std;
 int main() {
     int n;
     cin >> n;
-    vector<int> a(n);
+    vector<long long> a(n);
     rep(i,n) cin >> a[i];
-    vector<int> diffs(n-1);
+    vector<long long> diffs(n-1);
     rep(i,n-1) diffs[i] = a[i+1] - a[i];
-    int ans = 2*n-1;
+    long long ans = 2*n-1;
     int cnt = 0;
-    rep(i,n-1) {
+    rep(i,n-2) {
         if (diffs[i] == diffs[i+1]) cnt++;
         else {
-            if (cnt >= 1) ans += (cnt+1)*cnt/2;
+            if (cnt >= 1) ans += cnt * (cnt + 1) / 2;
             cnt = 0;
         }
     }
-
-    if (cnt > 0) ans += (cnt+1)*cnt/2;
+    if (cnt >= 1) ans += cnt * (cnt + 1) / 2;
     cout << ans << endl;
     return 0;
 }
