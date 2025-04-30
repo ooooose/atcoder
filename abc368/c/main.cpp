@@ -6,20 +6,19 @@ using ll = long long;
 int main() {
     int n;
     cin >> n;
-    ll ans = 0;
+    ll t = 0;
     rep(i, n) {
-        ll h;
+        int h;
         cin >> h;
-        ll piv = h / 5;
+        int x = h / 5;
+        h -= 5 * (h / 5);
         int mod = h % 5;
-        if(piv>0) ans += piv * 3;
-        if (mod == 0) ans += 0;
-        else if (mod == 1) ans += 1;
-        else if (mod == 2) ans += 2;
-        else if (mod == 3) ans += 3;
-        else if (mod == 4) ans += 3;
+        t += x * 3;
+        if (mod <= 2) t += mod;
+        else if (mod == 3) t += 3;
+        else if (mod == 4) t += 3;
     }
-    cout << ans << endl;
+    cout << t << endl;
     return 0;
 }
 
