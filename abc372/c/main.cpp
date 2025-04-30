@@ -7,7 +7,6 @@ int main() {
     cin >> n >> q;
     string s;
     cin >> s;
-    vector<string> t(n);
     int ans = 0;
     rep (i, n-2) {
         string target = s.substr(i, 3);
