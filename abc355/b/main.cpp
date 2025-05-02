@@ -11,9 +11,8 @@ int main() {
     auto C = A;
     for (auto x : B) C.push_back(x);
     sort(C.begin(), C.end());
-    set<int> st(A.begin(), A.end());
     for (int i = 0; i < N + M - 1; ++i) {
-        if (st.contains(C[i]) && st.contains(C[i + 1])) {
+        if (find(A.begin(), A.end(), C[i]) != A.end() && find(A.begin(), A.end(), C[i+1]) != A.end()) {
             cout << "Yes" << endl;
             return 0;
         }
