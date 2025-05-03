@@ -7,9 +7,6 @@ int main() {
     int n;
     cin >> n;
     map<char, int> m;
-    rep(i, 26) {
-        m[char('a' + i)] = 0;
-    }
     string s;
     cin >> s;
     int tmp = 1;
