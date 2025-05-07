@@ -5,21 +5,15 @@ using namespace std;
 int main() {
     int n, m;
     cin >> n >> m;
-    vector<int> a(n);
+    vector<long long> a(n);
     rep(i,n) cin >> a[i];
     sort(a.begin(), a.end());
-    vector<int> diffs(n-1);
-    rep(i,n-1) diffs[i] = a[i+1] - a[i];
+    a.push_back(LLONG_MAX);
     int ans = 0;
-    rep(i, n-1) {
-        int count = 1;
-        int sum = 0;
-        for (int j = i; j < n-1; j++) {
-            sum += diffs[j];
-            if (sum > m-1) break;
-            count++;
-        }
-        ans = max(ans, count);
+    int r = 0;
+    rep(i, n+1) {
+        while (a[r] < a[i]+m) r++;
+        ans = max(ans, r-i);
     }
     cout << ans << endl;
     return 0;
