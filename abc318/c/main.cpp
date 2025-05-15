@@ -9,7 +9,6 @@ int main() {
     cin >> n >> d >> p;
     vector<ll> f(n), s(n);
     rep(i, n) cin >> f[i];
-    // 運賃を高い順にソート
     sort(f.begin(), f.end());
     s[0] = f[0];
     rep(i, n-1) s[i+1] = s[i] + f[i+1];
