@@ -61,7 +61,6 @@ int main() {
     }
 
     cout << mx + 1 << endl; // 直径は最長距離+1
-
     return 0;
 }
 
