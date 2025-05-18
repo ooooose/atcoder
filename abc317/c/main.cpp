@@ -22,6 +22,7 @@ void dfs(int v, const vector<vector<Edge>>& G, vector<bool>& visited, ll cost, l
             dfs(edge.to, G, visited, cost + edge.cost, max_cost);
         }
     }
+    // すべての隣接ノードを訪問したら、各街起点のループに影響がでないようにvisited[v]をfalseに戻す
     visited[v] = false;
 }
 
