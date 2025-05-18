@@ -22,7 +22,6 @@ void dfs(int v, const vector<vector<Edge>>& G, vector<bool>& visited, ll cost, l
             dfs(edge.to, G, visited, cost + edge.cost, max_cost);
         }
     }
-
     visited[v] = false;
 }
 
@@ -34,12 +33,16 @@ int main() {
         int a, b;
         ll c;
         cin >> a >> b >> c;
+        // 1-indexedから0-indexedに変換
         a--; b--;
         G[a].push_back({b, c});
         G[b].push_back({a, c});
     }
     ll max_cost = 0;
 
+    // 各街を起点にDFSを行い、通った街の数をカウントする。
+    // その後、通った街の数が最大値を更新する。
+    // ただし、同じ街を２度と通らないようにするため、visited配列を用意する。
     rep(i, n) {
         vector<bool> visited(n, false);
         dfs(i, G, visited, 0, max_cost);
