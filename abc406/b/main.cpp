@@ -6,20 +6,16 @@ using ll = long long;
 int main() {
     int n, k;
     cin >> n >> k;
-    ll limit = 1;
-    rep(i, k) limit *= 10;
+    ll a, y=1, x=1;
     
-    ll current = 1;
-    rep(i, n) {
-        ll a;
-        cin >> a;
-        current *= a;
-        
-        if (current >= limit) {
-            current = 1;
-        }
-    }
+    rep(i,k) y*=10;
+    y--;
 
-    cout << current << endl;
+    rep(i,n) {
+        cin >> a;
+        if(x>(y/a)) x = 1;
+        else x*=a;
+    }
+    cout << x << endl;
     return 0;
 }
