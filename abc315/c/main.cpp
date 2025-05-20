@@ -22,6 +22,7 @@ int main() {
     int max_score = 0;
     vector<int> top_scores;
 
+    // 同じ味のアイスを2個食べるパターンと異なる味のアイスを2つ選んで食べるパターンを考慮してmax_scoreを更新
     // 異なる味の最大2つの美味しさを考慮
     for(auto & [flavor, scores] : flavor_map) {
         if (!scores.empty()) top_scores.push_back(scores[0]);
