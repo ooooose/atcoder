@@ -42,6 +42,7 @@ int main() {
         cin >> a >> b >> c;
         // 0-indexedに変換
         a--; b--;
+        // 無向グラフのため、両方向に辺を追加
         G[a].emplace_back(b, c);
         G[b].emplace_back(a, c);
     }
