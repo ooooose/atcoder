@@ -8,20 +8,18 @@ int main() {
     cin >> n >> k;
     vector<int> p(n);
     vector<int> q(n);
-    rep(i,n) {
-        cin >> p[i];
-        cin >> q[i];
-    }
+    rep(i,n) cin >> p[i];
+    rep(i,n) cin >> q[i];
+
+    bool answer = false;
     rep(i,n) {
         rep(j,n) {
             int sum = p[i] + q[j];
-            if (sum == k) {
-                cout << "Yes" << endl;
-                return 0;
-            }
+            if (sum == k) answer = true;
         }
     }
-    cout << "No" << endl;
+    if (answer) cout << "Yes" << endl;
+    else cout << "No" << endl;
     return 0;
 }
 
