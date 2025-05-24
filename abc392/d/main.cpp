@@ -1,37 +1,38 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-#define rep(i, n) for (int i = 0; i < (n); i++)
 
 int main() {
     int n;
     cin >> n;
-    // 出る目の確率をMapで管理する
-    vector<pair<int, map<int, double>>> ka(n);
-    rep(i, n) {
+
+    // サイコロの出目と確率を管理
+    vector<map<int, double>> dice(n);
+    for (int i = 0; i < n; i++) {
         int k;
         cin >> k;
-        ka[i].first = i;
-        vector<int> a(k);
-        rep(j, k) {
-            cin >> a[j];
-            double x = 1 / (double)k;
-            ka[i].second[a[j]] += x;
+        for (int j = 0; j < k; j++) {
+            int a;
+            cin >> a;
+            dice[i][a] += 1.0 / k;
         }
     }
-    // 2つのサイコロの出目が等しくなる確率の最大値を求める。
-    double ans = 0;
+
+    double max_prob = 0.0;
+
+    // 2つのサイコロを選ぶ
     for (int i = 0; i < n; i++) {
         for (int j = i + 1; j < n; j++) {
-            double tmp = 0;
-            for (auto [x, y] : ka[i].second) {
-                if (ka[j].second.count(x)) {
-                    tmp = min(ka[i].second[x], ka[j].second[x]);
+            double prob = 0.0;
+            for (const auto& [x, p1] : dice[i]) {
+                if (dice[j].count(x)) {
+                    prob += p1 * dice[j][x];
                 }
             }
-            ans = max(ans, tmp);
+            max_prob = max(max_prob, prob);
         }
     }
-    cout << fixed << setprecision(15) << ans << endl;
+
+    cout << fixed << setprecision(15) << max_prob << endl;
     return 0;
 }
 
