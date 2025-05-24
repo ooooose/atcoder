@@ -20,7 +20,7 @@ int main() {
         }
     }
 
-    int min_moves = 0;
+    long long min_moves = 0;
     for (int di : d) {
         min_moves += min(di, c1 - di);
     }
