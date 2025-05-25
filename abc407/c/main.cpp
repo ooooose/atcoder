@@ -5,20 +5,20 @@ int main() {
     string s;
     cin >> s;
 
-    int op = 0;
+    int ans = 0;
     int current = 0;
 
     for (int i = s.size() - 1; i >= 0; i--) {
         int target = s[i] - '0';
 
         int diff = (target - current + 10) % 10;
-        op += diff;
+        ans += diff;
 
-        op++;
+        ans++;
 
         current = target;
     }
 
-    cout << op << endl;
+    cout << ans << endl;
     return 0;
 }
