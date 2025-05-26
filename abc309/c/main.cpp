@@ -12,28 +12,26 @@ int main() {
     int n, k;
     cin >> n >> k;
     vector<P> medicines(n);
-    ll all = 0; // 全ての服薬量の合計
+    ll all = 0;
     rep(i,n) {
         int a, b;
         cin >> a >> b;
-        all += b; // 全ての服薬量を足す
-        medicines[i] = {a, b}; // {日数, 服薬料}
+        all += b;
+        medicines[i] = {a, b}; // {日数, 服薬量}
     }
     // すでに服薬量の合計がKを超えている場合は1と出力
-    if (k >= all) {
+    if (all <= k) {
         cout << 1 << endl;
         return 0;
     }
-    sort(medicines.rbegin(), medicines.rend());
-    ll sum = 0;
-    rep(i, n) {
-        sum += medicines[i].second; // 服薬量を足す
-        if (k <= sum) {
-            cout << medicines[i].first + 1 << endl;
+    sort(medicines.begin(), medicines.end());
+    for(auto [a,b] : medicines) {
+        all -= b;
+        if (all <= k) {
+            cout << a+1 << endl;
             return 0;
         }
     }
-    cout << medicines.back().first + 1 << endl; // 全ての服薬量を足してもKを超えない場合は最後の日数+1を出力
     return 0;
 }
 
