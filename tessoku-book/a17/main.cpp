@@ -20,6 +20,7 @@ int main() {
     int Place = N;
     while(true) {
         Answer.push_back(Place);
+        if (Place == 1) break;
 
         if(dp[Place - 1] + A[Place] == dp[Place]) Place = Place - 1;
         else Place = Place - 2;
