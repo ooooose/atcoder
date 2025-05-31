@@ -1,58 +1,34 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int solve(const string &s) {
-    int n = s.size();
-    vector<int> pos;
 
-    for (int i = 0; i < n; ++i) {
-        if (s[i] == '1') pos.push_back(i);
-    }
+void solve() {
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+    vector<int> c(n+1);
 
-    int total_ones = pos.size();
-    if (total_ones <= 1) return 0;
+    for(int i = 0; i < n; i++) c[i+1] = c[i] + (s[i] == '0' ? 1 : -1);
+    int sum = count(s.begin(), s.end(), '1');
 
-    int min_ops = INT_MAX;
-    int left = 0;
+    int ma = 0;
+    int res = 0;
 
-    for (int right = 0; right < total_ones; ++right) {
-        while (left <= right) {
-            int ones_inside = right - left + 1;
-            int l = pos[left];
-            int r = pos[right];
-            int zeros_inside = (r - l + 1) - ones_inside;
-            int ones_outside = total_ones - ones_inside;
-            int cost = zeros_inside + ones_outside;
-
-            min_ops = min(min_ops, cost);
-
-            if (left < right && zeros_inside > ones_outside)
-                ++left;
-            else
-                break;
-        }
-    }
-
-    return min_ops;
+    for(int i=0; i <= n; i++) {
+        res = min(res, c[i] - ma);
+        ma = max(ma, c[i]);
+    } 
+    cout << sum + res << endl;
 }
 
+
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+    int t;
+    cin >> t;
 
-    int T;
-    cin >> T;
-    vector<string> results;
-
-    while (T--) {
-        int N;
-        string S;
-        cin >> N >> S;
-        results.push_back(to_string(solve(S)));
-    }
-
-    for (auto &res : results) {
-        cout << res << "\n";
+    while(t--) {
+        solve();
     }
 
     return 0;
