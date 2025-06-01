@@ -4,7 +4,7 @@ using namespace std;
 // g++ -std=c++23 main.cpp
 
 int N, K, H[100009];
-int dp[100009];
+long long dp[100009];
 
 int main() {
     cin >> N >> K;
@@ -16,6 +16,7 @@ int main() {
 
     for(int i = 2; i < N; i++) {
         for (int j = 1; j <= K; j++) {
+            if (j > i) continue;
             dp[i] = min(dp[i], dp[i-j] + abs(H[i] - H[i-j]));
         }
     }
