@@ -8,9 +8,8 @@ int main() {
     cin >> S;
     vector<int> ids;
 
-    // iは取り除く個数、これが答えになる
     // bit全探索で桁を選ぶか選ばないかの判定をする
-    // 桁が最も大きいものを出力
+    // 桁が最も大きいものを候補として最大の桁数を保持する
     int ans = 0;
     for(int bit = 0; bit < (1 << S.size()); ++bit) {
         ids.clear();
