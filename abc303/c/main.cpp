@@ -26,14 +26,17 @@ int main() {
 
     P current = {0, 0};
     rep(i, S.size()) {
+        H--;
         current.first += dir.at(S[i]).first;
         current.second += dir.at(S[i]).second;
-        H--;
-        auto it = portions.find(current);
-        if(H < K && it != portions.end()) H=K;
-        if(i+1 != S.size() && H==0) {
+        if (H < 0) {
             cout << "No" << endl;
             return 0;
+        }
+
+        if(H < K && portions.count(current)) {
+            H = K;
+            portions.erase(current);
         }
     }
     
