@@ -12,19 +12,23 @@ int main() {
     rep(i,M) {
         int a,b;
         cin>>a>>b;
+        // 0-indexに直す
         a--; b--;
+        // 弱いbをインクリメントして記録する
         S[b]++;
     }
 
     int cnt = 0;
     int target = 0;
     rep(i,N){
+        // 最強プログラマ候補を出力
         if (S[i] == 0) {
             cnt++;
             target = i;
         }
     }
 
+    // cntが1つのみ、つまり最強プログラマの候補が1名に絞れればその人の値を出力する
     if (cnt == 1) cout << target+1 << endl;
     else cout << -1 << endl;
 
