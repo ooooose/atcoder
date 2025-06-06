@@ -8,25 +8,19 @@ int main() {
     cin>>N;
     string S;
     cin>>S;
-    int ans=0;
+    int ans=-1;
     bool flag=false;
     int cnt=0;
-    rep(i,N-1){
-        if(flag){
-            if(S[i]=='o')cnt++;
-            if(S[i+1]=='-'){
-                ans=max(ans,cnt);
-                flag=false;
-                cnt=0;
-            }
-        }
-        if(!flag){
-            if(S[i+1]=='-')flag=false;
-            else if(S[i+1]=='o')flag=true;
+    rep(i,N){
+        if(S[i]=='o')cnt++;
+        else if(S[i]=='-'){
+            if(cnt>0)ans=max(ans,cnt);
+            cnt=0;
+            flag=true;
         }
     }
-    if(ans>0)cout<<ans<<endl;
-    else cout<<-1<<endl;
+    if(cnt>0&&flag)ans=max(ans,cnt);
+    cout<<ans<<endl;
     return 0;
 }
 
