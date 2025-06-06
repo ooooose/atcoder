@@ -11,11 +11,11 @@ int main() {
     int ans=0;
     int cnt=0;
     rep(i,N){
-        if(S[i]=='o')cnt++;
-        if(S[i]=='-'){
+        if(S[i]=='o'){
+            cnt++;
             ans=max(ans,cnt);
-            cnt=0;
         }
+        if(S[i]=='-')cnt=0;
     }
     if(ans>0)cout<<ans<<endl;
     else cout<<-1<<endl;
