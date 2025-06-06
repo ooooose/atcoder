@@ -20,7 +20,7 @@ int main() {
     int N=min(H,W); 
     vector<int> S(N,0);
     queue<P> Q;
-    rep(i,H)rep(j,W)if(C[i][j]&&check(i,j))Q.push({i,j});
+    rep(i,H)rep(j,W)if(C[i][j]=='#'&&check(i,j))Q.push({i,j});
 
     while(!Q.empty()){
         auto [x,y]=Q.front();
