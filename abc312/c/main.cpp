@@ -10,19 +10,11 @@ int main() {
 
     rep(i, N) cin >> A[i];
     rep(i, M) cin >> B[i];
-    vector<P> events;
-    rep(i,N)events.push_back(P(A[i],0));
-    rep(i,M)events.push_back(P(B[i]+1,1));
+    vector<int> events;
+    rep(i,N)events.push_back(A[i]);
+    rep(i,M)events.push_back(B[i]+1);
     sort(events.begin(),events.end());
-    int na=0,nb=M;
-    for(auto [p,type] : events) {
-        if(type==0)na++; 
-        else nb--;
-        if(na>=nb){
-            cout<<p<<endl;
-            return 0;
-        }
-    }
+    cout<<events[M-1]<<endl;
     return 0;
 }
 
