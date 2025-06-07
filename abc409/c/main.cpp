@@ -19,12 +19,12 @@ int main() {
         cout<<0<<endl;
         return 0;
     }
-    int ans=0;
+    ll ans=0;
     for(int i=0;i<L/3;i++){
         int a=D[i].size();
-        int b=D[i+L/3].size();
-        int c=D[i+L/3*2].size();
-        ans+=a*b*c;
+        int b=D[(i+L/3)%L].size();
+        int c=D[(i+L/3*2)%L].size();
+        ans+=(ll)a*b*c;
     }
     cout<<ans<<endl;
     return 0;
