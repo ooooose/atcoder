@@ -4,13 +4,13 @@ using namespace std;
 using P =pair<int,int>;
 
 int main() {
-    int N, M;
-    cin >> N >> M;
+    int N,M;
+    cin>>N>>M;
     vector<int> A(N), B(M);
 
     rep(i, N) cin >> A[i];
     rep(i, M) cin >> B[i];
-    int wa=0,ac=1e9;
+    int wa=0,ac=1001001001;
     while(wa+1<ac){
         int wj=(wa+ac)/2;
         int na=0,nb=0;
