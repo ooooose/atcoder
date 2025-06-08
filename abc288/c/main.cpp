@@ -12,6 +12,8 @@ int main(){
         int u,v;
         cin>>u>>v;
         u--;v--;
+        // merge前にu,vの要素によってグラフが連結するか確認
+        // その場合は取り除くべき辺なのでans++する
         if(D.same(u,v))ans++;
         D.merge(u,v);
     }
