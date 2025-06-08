@@ -1,29 +1,77 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-// g++ -std=c++23 main.cpp
-
-int main() {
+ 
+int main(){
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int N; cin>>N;
-    vector<vector<int>> G(N,vector<int>(N));
+    
+    int H,W; 
+    cin>>H>>W;
+    vector<vector<char>> grid(H, vector<char>(W));
+    for(int i=0;i<H;i++){
+        for(int j=0;j<W;j++){
+            cin>>grid[i][j];
+        }
+    }
+    
+    int N; 
+    cin >> N;
+    map<char,set<char>> predToPrey;
+    map<char,int> inDegree;
+    set<char> species;
     for(int i=0;i<N;i++){
-        for(int j=0;j<N;j++){
-            cin>>G[i][j];
+        char p,v;
+        cin>>p>>v;
+        species.insert(p);
+        species.insert(v);
+        predToPrey[p].insert(v);
+        if(!inDegree.count(p))inDegree[p] = 0;
+        if(!inDegree.count(v))inDegree[v] = 0;
+        inDegree[v]++;
+    }
+    
+    queue<char> q;
+    for(auto s: species){
+        if(inDegree[s] == 0) q.push(s);
+    }
+    vector<char> topo;
+    while(!q.empty()){
+        char cur = q.front(); q.pop();
+        topo.push_back(cur);
+        if(predToPrey.count(cur)){
+            for(auto nxt: predToPrey[cur]){
+                inDegree[nxt]--;
+                if(inDegree[nxt]==0)q.push(nxt);
+            }
         }
     }
-    vector<vector<int>> DP(N,vector<int>(N));
-    DP[0][0]=G[0][0];
-    for(int i=1;i<N;++i){
-        DP[i][0]=DP[i-1][0]+G[i][0];
-        DP[0][i]=DP[0][i-1]+G[0][i];
-    }
-    for(int i=1;i<N;++i){
-        for(int j=1;j<N;++j){
-            DP[i][j]=max(DP[i-1][j], DP[i][j-1])+G[i][j];
+    
+    int di[8]={-1,-1,-1,0,0,1,1,1};
+    int dj[8]={-1,0,1,-1,1,-1,0,1};
+    
+    for(auto s: topo){
+        if(!predToPrey.count(s)) continue;
+        auto preySet=predToPrey[s];
+        for(int i=0;i<H;i++){
+            for(int j=0;j<W;j++){
+                if(grid[i][j] == s){
+                    for(int d=0;d<8;d++){
+                        int ni=i+di[d],nj=j+dj[d];
+                        if(ni<0||nj<0||ni>=H||nj>=W) continue;
+                        if(grid[ni][nj]=='-') continue;
+                        if(preySet.count(grid[ni][nj])){
+                            grid[ni][nj]='-';
+                        }
+                    }
+                }
+            }
         }
     }
-    cout<<DP[N-1][N-1]<<endl;
+    
+    for(int i=0;i<H;i++){
+        for(int j=0;j<W;j++) cout<<grid[i][j]<<(j==W-1?"\n":" ");
+    }
+    
     return 0;
 }
 
