@@ -9,9 +9,11 @@ int main() {
     string S; cin>>S;
     int l=(int)S.size()-1;
     long long ans=0;
+    long long base=1;
     for(int i=l;i>=0;i--){
         int x=S[i]-'A'+1;
-        ans+=(long long)x*pow(26,l-i);
+        ans+=(long long)x*base;
+        base*=26;
     }
     cout<<ans<<endl;
     
