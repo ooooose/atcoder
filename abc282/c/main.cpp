@@ -9,7 +9,7 @@ int main() {
     int N;cin>>N;
     string S;cin>>S;
     int current=0;
-    rep(i,2*N){
+    rep(i,N){
         if(S[i]=='"'){
             if(current)current--;
             else current++;
