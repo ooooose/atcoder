@@ -9,10 +9,11 @@ int main() {
     int N,W;
     cin>>N>>W;
     
-    vector<int> imos(200009,0);
+    vector<long long> imos(200009,0);
 
     for(int i=0;i<N;i++){
-        int S,T,P;
+        int S,T;
+        long long P;
         cin>>S>>T>>P;
         imos[S]+=P;
         imos[T]-=P;
