@@ -15,7 +15,7 @@ int main() {
             else current++;
         }
         else{
-            if(S[i]==','&&current==0)S[i]='.';
+            if(S[i]==','&&!current)S[i]='.';
         }
     }
 
