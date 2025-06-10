@@ -5,19 +5,20 @@ using namespace std;
 int main() {
     long long K;
     cin>>K;
-    long long limit=20;
+    long long A,N,X,ans=1;
 
-    long long current=1;
-    for(long long i=1;i<limit;i++){
-        current*=i;
-        if(current%K==0){
-            cout<<i<<endl;
-            return 0;
+    for(long long p=2;(p*p)<=K;p++){
+        A=0;
+        while(K%p==0)K/=p,ans++;
+        N=0;
+        while(A>0){
+            N+=p;
+            X=N;
+            while(X%p)X/=p,A--;
         }
     }
-    cout<<K<<endl;
-
-    
+    ans=max(ans,K);
+    cout<<ans<<endl;
     return 0;
 }
 
