@@ -3,22 +3,21 @@ using namespace std;
 #define rep(i, n) for (int i = 0; i < (n); i++)
 
 int main() {
-    long long K;
-    cin>>K;
-    long long A,N,X,ans=1;
-
-    for(long long p=2;(p*p)<=K;p++){
-        A=0;
-        while(K%p==0)K/=p,A++;
-        N=0;
-        while(A>0){
-            N+=p;
-            X=N;
-            while(X%p==0)X/=p,A--;
-        }
-    }
-    ans=max(ans,K);
-    cout<<ans<<endl;
-    return 0;
+	long long k,p,a,n,x,ans=1;
+	cin>>k;
+	for(p=2;(p*p)<=k;p++){
+		a=0;
+		while(k%p==0)k/=p,a++;
+		n=0;
+		while(a>0){
+			n+=p;
+			x=n;
+			while(x%p==0)x /= p,a--;
+		}
+		ans=max(ans,n);
+	}
+	ans=max(ans,k);
+	cout << ans <<endl;
+	return 0;
 }
 
