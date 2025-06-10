@@ -14,7 +14,7 @@ int main() {
         while(A>0){
             N+=p;
             X=N;
-            while(X%p)X/=p,A--;
+            while(X%p==0)X/=p,A--;
         }
     }
     ans=max(ans,K);
