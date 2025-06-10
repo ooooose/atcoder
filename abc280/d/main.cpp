@@ -9,7 +9,7 @@ int main() {
 
     for(long long p=2;(p*p)<=K;p++){
         A=0;
-        while(K%p==0)K/=p,ans++;
+        while(K%p==0)K/=p,A++;
         N=0;
         while(A>0){
             N+=p;
