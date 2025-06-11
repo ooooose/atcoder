@@ -3,43 +3,43 @@ using namespace std;
 #define rep(i, n) for (int i = 0; i < (n); i++)
 // g++ -std=c++23 main.cpp
 
-int N,M;
-string S;
-int ans=0;
-
-bool win(char me, char you) {
-    return (me=='G'&&you=='C' ||
-            me=='C'&&you=='P' ||
-            me=='P'&&you=='G');
-}
-
-int fingers(char hand){
-    if(hand=='G')return 0;
-    if(hand=='C')return 2;
-    return 5;
-}
-
-void dfs(int i, int sum, int wins){
-    if(sum>M) return;
-    if(i==N){
-        if(sum==M)ans=max(ans,wins);
-        return;
-    }
-    for(char hand:{'G','C','P'}){
-        int f=fingers(hand);
-        int win_count=win(hand,S[i])?1:0;
-        dfs(i+1,sum+f,wins+win_count);
-    }
-}
 
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
+    int N,M;
+    string S;
     cin>>N>>M>>S;
 
-    dfs(0,0,0);
+    vector<vector<int>> dp(N+1, vector<int>(M+1,-1));
+    dp[0][0]=0;
 
-    cout<<ans<<endl;
+    auto fingers=[](char hand)->int{
+        if(hand=='G')return 0;
+        if(hand=='C')return 2;
+        return 5;
+    };
+    auto win=[](char me, char you)->bool{
+        return(me=='G'&&you=='C')||
+                (me=='C'&&you=='P')||
+                (me=='P'&&you=='G');
+    };
+    
+    vector<char> hands={'G','C','P'};
+
+    for(int i=0;i<N;i++){
+        for(int sum=0;sum<=M;++sum){
+            if(dp[i][sum]==-1)continue;
+            for(char h:hands){
+                int f=fingers(h);
+                if(sum+f>M)continue;
+
+                int w=win(h,S[i])?1:0;
+                dp[i+1][sum+f]=max(dp[i+1][sum+f],dp[i][sum]+w);
+            }
+        }
+    }
+    cout<<dp[N][M]<<endl;
     return 0;
 }
 
