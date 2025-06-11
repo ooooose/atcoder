@@ -19,7 +19,7 @@ int main() {
     for(int i=0;i<N;i++)cin>>P[i];
     for(int i=N-1;i>0;i--){
         if(P[i-1]>P[i]){
-            for(int j=N-1;j>i;j--){
+            for(int j=N-1;j>=i;j--){
                 if(P[i-1]>P[j]){
                     swap(P[i-1],P[j]);
                     reverse(P.begin()+i,P.end());
