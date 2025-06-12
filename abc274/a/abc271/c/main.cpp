@@ -8,30 +8,29 @@ int main() {
     cin.tie(nullptr);
     int N;
     cin>>N;
-    multiset<int> A;
-    for(int i=0;i<N;i++){
-        int a;
-        cin>>a;
-        A.insert(a);
+    map<int,int> count;
+    for(int i=0;i<N;++i){
+        int a;cin>>a;
+        count[a]++;
     }
     int next=1;
-    int trade=0;
+    int rest=0;
+    for(auto [k,v]: count){
+        rest+=v;
+    }
     while(true){
-        auto it=A.find(next);
-        if(it!=A.end()){
-            A.erase(it);
+        if(count[next]>0){
+            count[next]--;
+            rest--;
             next++;
-        }
-        else{
-            if((int)A.size()>=2){
-                A.erase(prev(A.end()));
-                A.erase(prev(A.end()));
+        }else{
+            if(rest>=2){
+                rest-=2;
                 next++;
             }
             else break;
         }
     }
-    cout<<(next==1?0:next-1)<<endl;
+    cout<<(next-1)<<endl;
     return 0;
 }
-
