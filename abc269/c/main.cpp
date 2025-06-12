@@ -6,17 +6,17 @@ using namespace std;
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    uint64_t N;cin>>N;
+    long long N;cin>>N;
     vector<int> bits;
     for(int i=0;i<60;++i){
         if((N>>i)&1)bits.push_back(i);
     }
     int M=bits.size();
-    vector<uint64_t> res;
+    vector<long long> res;
     for(int mask=0;mask<(1<<M);++mask){
-        uint64_t x=0;
+        long long x=0;
         for(int i=0;i<M;++i){
-            if((mask>>i)&1)x|=(1ULL<<bits[i]);
+            if((mask>>i)&1)x|=(1LL<<bits[i]);
         }
         res.push_back(x);
     }
