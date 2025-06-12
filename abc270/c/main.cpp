@@ -38,7 +38,7 @@ int main() {
         res.push_back(v);
     }
     reverse(res.begin(),res.end());
-    for(int v:res)cout<<v<<" ";
+    for(int v:res)cout<<v<<(v!=res.back()?" ":"");
     cout<<endl;
     return 0;
 }
