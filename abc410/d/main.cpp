@@ -14,7 +14,7 @@ int main(){
         G[u].push_back({v,w});
     }
     
-    const int S_SIZE = 1024;
+    const int S_SIZE=1024;
     vector<vector<bool>> reached(N+1,vector<bool>(S_SIZE,false));
 
     queue<pair<int,int>> q;
