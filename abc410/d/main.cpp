@@ -1,70 +1,48 @@
-
 #include <bits/stdc++.h>
 using namespace std;
 
-int N, M;
-vector<vector<pair<int, int>>> G;
-vector<int> dist;
-vector<int> basis;
-vector<bool> visited;
-
-void insert_basis(int x){
-    for(int i=9;i>=0;i--){
-        if(!(x&(1<<i)))continue;
-        if(basis[i]==0){
-            basis[i]=x;
-            return;
-        }
-        x^=basis[i];
-    }
-}
-
-int query_min(int x){
-    for(int i=9;i>=0;i--) {
-        if(basis[i]!=0)x=min(x,x^basis[i]);
-    }
-    return x;
-}
-
-void dfs(int u){
-    visited[u]=true;
-    for (auto [v,w]:G[u]){
-        int val=dist[u]^w;
-        if(dist[v]==-1){
-            dist[v]=val;
-            dfs(v);
-        }else{
-            int cycle=val^dist[v];
-            if(cycle!=0)insert_basis(cycle);
-        }
-    }
-}
-
-int main() {
+int main(){
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     
+    int N,M;
     cin>>N>>M;
-    G.assign(N+1,vector<pair<int,int>>());
-    basis.assign(10,0);
     
-    for (int i=0;i<M;++i){
+    vector<vector<pair<int,int>>> G(N+1);
+    for (int i=0;i<M;i++){
         int u,v,w;cin>>u>>v>>w;
         G[u].push_back({v,w});
     }
     
-    dist.assign(N+1,-1);
-    visited.assign(N+1,false);
+    const int S_SIZE = 1024;
+    vector<vector<bool>> reached(N+1,vector<bool>(S_SIZE,false));
+
+    queue<pair<int,int>> q;
+    reached[1][0]=true;
+    q.push({1,0});
     
-    dist[1] = 0;
-    dfs(1);
-    
-    if(dist[N]==-1){
-        cout<<-1<<endl;
-        return 0;
+    while(!q.empty()){
+        auto [u,s]=q.front();
+        q.pop();
+        for(const auto &edge:G[u]){
+            int v=edge.first;
+            int w=edge.second;
+            int ns=s^w;
+            if(!reached[v][ns]){
+                reached[v][ns]=true;
+                q.push({v,ns});
+            }
+        }
     }
     
-    int ans=query_min(dist[N]);
+    int ans=-1;
+    for(int s=0;s<S_SIZE;s++){
+        if(reached[N][s]){ 
+            ans=s;
+            break;
+        }
+    }
+    
     cout<<ans<<endl;
     return 0;
 }
