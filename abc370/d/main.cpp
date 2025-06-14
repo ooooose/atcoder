@@ -3,37 +3,44 @@ using namespace std;
 #define rep(i, n) for (int i = 0; i < (n); i++)
 
 int main() {
-    int H,W,Q;cin>>H>>W>>Q;
-    vector<vector<bool>> G(H,vector<bool>(W,false));
-    int ans=H*W;
-    vector<int> dx={0,0,-1,1};
-    vector<int> dy={1,-1,0,0};
-    for(int qi=0;qi<Q;qi++){
-        int x,y;
-        cin>>x>>y;
-        x--;y--;
-        if(!G[x][y]){
-            G[x][y]=true;
-            ans--;
-        }
-        else{
-            for(int i=0;i<4;i++){
-                int nx=x,ny=y;
-                while(true){
-                    nx+=dx[i];
-                    ny+=dy[i];
-                    if(nx<0||nx>=H||ny<0||ny>=W)break;
-                    if(!G[nx][ny]){
-                        G[nx][ny]=true;
-                        ans--;
-                        break;
-                    }
-                }
-            }
-        }
+  cin.tie(nullptr);
+  ios::sync_with_stdio(false);
+  int H, W, Q;
+  cin >> H >> W >> Q;
+  vector<set<int>> g1(H), g2(W);
+  for (int i = 0; i < H; i++) {
+    for (int j = 0; j < W; j++) {
+      g1[i].insert(j);
+      g2[j].insert(i);
     }
-    cout<<ans<<endl;
-    
-    return 0;
+  }
+  auto erase = [&](int i, int j) { g1[i].erase(j), g2[j].erase(i); };
+  while (Q--) {
+    int R, C;
+    cin>>R>>C;
+    --R, --C;
+    if (g1[R].count(C)) {
+      erase(R, C);
+      continue;
+    }
+    {
+      auto it = g2[C].lower_bound(R);
+      if (it != begin(g2[C])) erase(*prev(it), C);
+    }
+    {
+      auto it = g2[C].lower_bound(R);
+      if (it != end(g2[C])) erase(*it, C);
+    }
+    {
+      auto it = g1[R].lower_bound(C);
+      if (it != begin(g1[R])) erase(R, *prev(it));
+    }
+    {
+      auto it = g1[R].lower_bound(C);
+      if (it != end(g1[R])) erase(R, *it);
+    }
+  }
+  int ans = 0;
+  for (int i = 0; i < H; i++) ans += g1[i].size();
+  cout << ans << "\n";
 }
-
