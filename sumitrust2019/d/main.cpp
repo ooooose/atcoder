@@ -8,24 +8,17 @@ int main() {
     cin.tie(nullptr);
     int N;cin>>N;
     string S;cin>>S;
-    set<string> seen;
+    int ans=0;
     for(int x1=0;x1<10;x1++)for(int x2=0;x2<10;x2++)for(int x3=0;x3<10;x3++){
+        vector<int> tmp={x1,x2,x3};
+        int f=0;
         for(int i=0;i<N;i++){
-            if(x1==S[i]-'0'){
-                for(int j=i+1;j<N;j++){
-                    if(x2==S[j]-'0'){
-                        for(int k=j+1;k<N;k++){
-                            if(x3==S[k]-'0'){
-                                string code=to_string(x1)+to_string(x2)+to_string(x3);
-                                seen.insert(code);
-                            }
-                        }
-                    }
-                }
-            }
+            if(int(S[i]-'0')==tmp[f])f++;
+            if(f==3)break;
         }
+        if(f==3)ans++;
     }
-    cout<<seen.size()<<endl;
+    cout<<ans<<endl;
     return 0;
 }
 
