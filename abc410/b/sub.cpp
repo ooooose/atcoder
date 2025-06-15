@@ -18,13 +18,13 @@ int main(){
         else{
             int target=0;
             int min_cnt=box[0];
-            for(int j=0;j<i;j++){
+            for(int j=1;j<N;j++){
                 if(box[j]<min_cnt){
                     min_cnt=box[j];
                     target=j;
                 }
             }
-            ans[i]=min_cnt+1;
+            ans[i]=target+1;
             box[target]++;
         }
     }
