@@ -25,6 +25,7 @@ int main(){
         }
         else if(t==3){
             long long k;cin>>k;
+            k=k%N;
             offset=(offset+k)%N;
         }
     }
