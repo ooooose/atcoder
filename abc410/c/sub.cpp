@@ -11,7 +11,7 @@ int main(){
     vector<int> A(N);
     for(int i=0;i<N;i++)A[i]=i+1;
     long long offset=0;
-    for(int i=0;i<Q;i++){
+    while(Q--){
         int t;cin>>t;
         if(t==1){
             int p,x;cin>>p>>x;
@@ -20,11 +20,13 @@ int main(){
         }
         else if(t==2){
             int p;cin>>p;
-            cout<<A[(offset+p-1)%N]<<endl;
+            int idx=(offset+p-1)%N;
+            cout<<A[idx]<<endl;
         }
         else if(t==3){
             long long k;cin>>k;
             offset=(offset+k)%N;
         }
     }
+    return 0;
 }
