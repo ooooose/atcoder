@@ -22,6 +22,7 @@ int main() {
             cnt=0;
         }
     }
+    ans=max(ans,cnt);
     cout<<ans<<endl;
     
     return 0;
