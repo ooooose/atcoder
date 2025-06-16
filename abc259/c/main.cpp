@@ -11,37 +11,31 @@ int main() {
     cin>>T;
     vector<pair<char,int>> SC;
     vector<pair<char,int>> TC;
-    char cur_s=S[0];
-    int x=0;
-    for(int i=0;i<(int)S.size();i++){
-        if(cur_s!=S[i]){
-            SC.push_back(make_pair(cur_s, x));
-            cur_s=S[i];
-            x=1;
+    int x=1;
+    for(int i=1;i<(int)S.size();i++){
+        if(S[i-1]!=S[i]){
+            SC.push_back(make_pair(S[i-1], x));
+            x=0;
         }
-        else x++;
+        x++;
     }
-    SC.push_back(make_pair(cur_s,x));
-    char cur_t=T[0];
-    int y=0;
-    for(int i=0;i<(int)T.size();i++){
-        if(cur_t!=T[i]){
-            TC.push_back(make_pair(cur_t,y));
-            cur_t=T[i];
-            y=1;
+    SC.push_back(make_pair(S.back(),x));
+    int y=1;
+    for(int i=1;i<(int)T.size();i++){
+        if(T[i-1]!=T[i]){
+            TC.push_back(make_pair(T[i-1],y));
+            y=0;
         }
-        else y++;
+        y++;
     }
-    TC.push_back(make_pair(cur_t,y));
+    TC.push_back(make_pair(T.back(),y));
     if(SC.size()!=TC.size()){
         cout<<"No"<<endl;
     }
     bool flag=true;
     for(int i=0;i<(int)SC.size();i++){
         if(SC[i].first!=TC[i].first)flag=false;
-        else{
-            if(SC[i].second<TC[i].second&&SC[i].second<2)flag=false;
-        }
+        if(!(SC[i].second==TC[i].second||SC[i].second<TC[i].second&&SC[i].second>=2))flag=false;
     }
     if(flag)cout<<"Yes"<<endl;
     else cout<<"No"<<endl;
