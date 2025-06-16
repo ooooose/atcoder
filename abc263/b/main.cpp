@@ -7,19 +7,17 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int N;cin>>N;
-    map<int,int> A;
-    for(int i=2;i<=N;i++){
-        int p;cin>>p;
-        A[i]=p;
+    vector<int> A(N);
+    for(int i=1;i<N;i++){
+        cin>>A[i];
+        A[i]--;
     }
-    int cur=A[N];
-    int ans=1;
-    for(int i=2;i<=N;i++){
-        if(cur==1)break;
-        cur=A[cur];
-        ans++;
+    vector<int> dp(N);
+    for(int i=1;i<N;i++){
+        dp[i]=dp[A[i]]+1;
     }
-    cout<<ans<<endl;
+    cout<<dp[N-1]<<endl;
+    
     return 0;
 }
 
