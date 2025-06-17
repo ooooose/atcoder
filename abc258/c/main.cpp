@@ -8,16 +8,16 @@ int main() {
     cin.tie(nullptr);
     int N,Q;cin>>N>>Q;
     string S;cin>>S;
-    int offset=0;
+    long long offset=0;
     while(Q--){
-        int t,x;cin>>t>>x;
-        x%=N;
+        long long t,x;cin>>t>>x;
         if(t==1){
-            offset=(offset-x)%N;
-            if(offset<0)offset+=N;
+            offset+=x;
         }
         else if(t==2){
-            cout<<S[(offset+x-1)%N]<<endl;
+            int idx=x-offset%N-1;
+            if(idx<0)idx+=N;
+            cout<<S[idx]<<endl;
         }
     }
     
