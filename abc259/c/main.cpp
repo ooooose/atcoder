@@ -7,10 +7,8 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     string S,T;
-    cin>>S;
-    cin>>T;
-    vector<pair<char,int>> SC;
-    vector<pair<char,int>> TC;
+    cin>>S>>T;
+    vector<pair<char,int>> SC,TC;
     int x=1;
     for(int i=1;i<(int)S.size();i++){
         if(S[i-1]!=S[i]){
@@ -31,6 +29,7 @@ int main() {
     TC.push_back(make_pair(T.back(),y));
     if(SC.size()!=TC.size()){
         cout<<"No"<<endl;
+        return 0;
     }
     bool flag=true;
     for(int i=0;i<(int)SC.size();i++){
