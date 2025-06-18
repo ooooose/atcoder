@@ -8,23 +8,22 @@ int main() {
     cin.tie(nullptr);
     long long X,A,D,N;
     cin>>X>>A>>D>>N;
-    long long idx=(X-A)/D;
-    long long min_x=A+idx*D; 
-    long long mmin_x=A+(idx+1)*D;
-    long long ans=1e9;
-    if((X<A&&X<A+(N-1)*D)||(X>A&&X>A+(N-1)*D)){
-        ans=min(ans,abs(A-X));
+    if(D<0){
+        long long fi=A+D*(N-1);
+        A=fi;
+        D*=-1;
     }
-    else if(idx+1>N){
-        long long max_x=A+(N-1)*D;
-        ans=min(ans,abs(max_x-X));
+
+    long long st=0,fi=(N-1);
+    while(st<fi){
+        long long te=(st+fi)/2;
+        if((A+D*te)<X)st=te+1;
+        else fi=te-1;
     }
-    else{
-        ans=min(ans,abs(min_x-X));
-        ans=min(ans,abs(mmin_x-X));
-    }
-    cout<<ans<<endl;
-    
+    long long res=8e18;
+    for(long long i=max(0ll,st-5);i<=min((N-1),st+5);i++)res=min(res,abs(A+D*i-X));
+    cout<<res<<endl;
+
     return 0;
 }
 
