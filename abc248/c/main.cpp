@@ -13,7 +13,7 @@ int main(){
     dp[0][0]=1;
     for(int i=0;i<N;i++)for(int s=0;s<=K;s++)
     {
-        if(dp[i][s] == 0)continue;
+        if(dp[i][s]==0)continue;
         for(int a=1;a<=M;a++)if(s+a<=K)dp[i+1][s+a]=(dp[i+1][s+a]+dp[i][s])%MOD;
     }
     
