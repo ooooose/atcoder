@@ -7,25 +7,20 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int N;cin>>N;
-    vector<int> A;
-    A.push_back(1);
-    if(N==1)
+    
+    vector<vector<int>> dp(N+1);
+
+    dp[1]={1};
+
+    for(int i=2;i<=N;++i)
     {
-        cout<<1<<endl;
-        return 0;
+        dp[i]=dp[i-1];
+        dp[i].push_back(i);
+        dp[i].insert(dp[i].end(),dp[i-1].begin(),dp[i-1].end());
     }
-    for(int i=2;i<=16;i++)
-    {
-        vector<int> C=A;
-        A.push_back(i);
-        A.insert(A.end(),C.begin(),C.end());
-        if(i==N)break;
-    }
-    for(int a:A)
-    {
-        cout<<a<<" ";
-    }
+    for(int i:dp[N])cout<<i<<" ";
     cout<<endl;
+
     return 0;
 }
 
