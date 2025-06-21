@@ -12,16 +12,17 @@ int main() {
     int ans=0;
     for(int bit=0;bit<(1<<N);bit++)
     {
-        string tmp="";
-        for(int i=0;i<N;i++) if(bit&(1<<i))tmp+=S[i];
         map<char,int> smap;
-        int cnt=0;
-        for(int i=0;i<(int)tmp.size();i++)
+        for(int i=0;i<N;i++) if(bit&(1<<i))
         {
-            smap[tmp[i]]++;
-            if(smap[tmp[i]]==K)cnt++;
+            for(char c: S[i]) smap[c]++;
         }
-        ans=max(ans,cnt);
+        int cur=0;
+        for(auto& [c,cnt]: smap)
+        {
+            if(cnt==K)cur++;
+        }
+        ans=max(ans,cur);
     }
     cout<<ans<<endl;
     return 0;
