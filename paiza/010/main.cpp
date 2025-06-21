@@ -27,7 +27,7 @@ int main(){
     cin.tie(nullptr);
     cin>>H>>W;
     grid.resize(H);
-    for (int i=0;i<H;i++)cin >> grid[i];
+    for (int i=0;i<H;i++)cin>>grid[i];
 
     int total=0;
     for (int i=0;i<H;i++)
@@ -51,7 +51,7 @@ int main(){
         {
             if (grid[x][y]=='#')
             {
-                dfs(x, y, visited, cnt);
+                dfs(x,y,visited,cnt);
                 found=true;
             }
         }
