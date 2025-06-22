@@ -18,7 +18,7 @@ int main() {
     {
         int a_count=lower_bound(A.begin(),A.end(),B[i])-A.begin();
         int c_count=C.end()-upper_bound(C.begin(),C.end(),B[i]);
-        ans+=a_count*c_count;
+        ans+=(long long)a_count*c_count;
     }
     cout<<ans<<endl;
     return 0;
