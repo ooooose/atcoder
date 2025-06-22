@@ -8,7 +8,7 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     string S;cin>>S;
-    for(int i=(int)S.size()-1;i>0;i--)
+    for(int i=(int)S.size()-1;i>=0;i--)
     {
         if(S[i]=='a')
         {
