@@ -1,34 +1,37 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 #define rep(i, n) for (int i = 0; i < (n); i++)
-// g++ -std=c++23 main.cpp
-
-int main() {
+ 
+int main(){
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
+    
     int N,K,X;cin>>N>>K>>X;
-    vector<int> A(N);
+    vector<long long> A(N);
     for(int i=0;i<N;i++)cin>>A[i];
+    
     sort(A.rbegin(),A.rend());
-    for(int i=0;i<N;i++)
+    
+    for(int i=0;i<N&&K>0;i++) 
     {
-        if(A[i]<X)continue;
-        int a=A[i];
-        int mai=(K-a/X>=0)?a/X:K;
-        K-=mai;
-        A[i]-=X*mai;
-        if(K==0)break;
+        long long cnt=A[i]/X;
+        long long use=min((long long)K,cnt);
+        A[i]-=use*X;
+        K-=use;
     }
+    
     sort(A.rbegin(),A.rend());
-    for(int i=0;i<N;i++)
+    for(int i=0;i<N&&K>0;i++) 
     {
-        K--;
-        A[i]=0;
-        if(K==0)break;
+        if(A[i]>0)
+        {
+            A[i]=0;
+            K--;
+        }
     }
-    int sum=0;
+    
+    long long sum=0;
     for(int i=0;i<N;i++)sum+=A[i];
-    cout<<sum<<endl;
+    cout<<sum<<"\n";
     return 0;
 }
-
