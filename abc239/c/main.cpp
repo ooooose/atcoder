@@ -9,11 +9,11 @@ int main() {
     int x1,y1,x2,y2;
     cin>>x1>>y1>>x2>>y2;
     vector<int> A(8),B(8);
-    vector<pair<int,int>> dir={
-        {1,2},{2,1},{1,-2},{-1,2},
-        {-1,2},{-2,1},{-2,1},{2,-1}
-    };
 
+    vector<pair<int,int>> dir={
+        {1, 2},{2, 1},{-1, 2},{-2, 1},
+        {-1, -2},{-2, -1},{1, -2},{2, -1}
+    };
     for(auto [dx,dy]:dir)
     {
         int nx=x1+dx;
