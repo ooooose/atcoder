@@ -17,8 +17,14 @@ int main() {
         sort(A.begin(),A.end(),[](ll a,ll b){
             return abs(a)<abs(b);
         });
-        bool ok=true;
 
+        if(N==2)
+        {
+            cout<<"Yes"<<endl;
+            continue;
+        }
+
+        bool ok=true;
         for(int i=2;i<N;i++)
         {
             if(A[i-1]*A[i-1]!=A[i-2]*A[i])
