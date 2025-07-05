@@ -14,37 +14,21 @@ int main() {
         vector<ll> A(N);
         for(int i=0;i<N;i++)cin>>A[i];
         
-        sort(A.begin(),A.end());
-        
+        sort(A.begin(),A.end(),[](ll a,ll b){
+            return abs(a)<abs(b);
+        });
         bool ok=true;
-        bool abs_ok=true;
-        
-        for(int i=1;i<N-1;i++) 
+
+        for(int i=2;i<N;i++)
         {
-            if((ll)A[i]*A[i]!=(ll)A[i-1]*A[i+1])
+            if(A[i-1]*A[i-1]!=A[i-2]*A[i])
             {
                 ok=false;
                 break;
             }
         }
-        
-        if(!ok)
-        {
-            sort(A.begin(),A.end(),[](ll a,ll b){
-                return abs(a)<abs(b);
-            });
-            
-            for(int i=1;i<N-1;i++)
-            {
-                if((ll)A[i]*A[i]!=(ll)A[i-1]*A[i+1])
-                {
-                    abs_ok=false;
-                    break;
-                }
-            }
-        }
-        
-        cout<<((ok||abs_ok)?"Yes":"No")<<endl;
+        cout<<(ok?"Yes":"No")<<endl;
+
     }
     return 0;
 }
