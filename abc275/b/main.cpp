@@ -14,7 +14,7 @@ int main() {
     int y=((D%MOD)*(E%MOD))%MOD;
     y=(y*(F%MOD))%MOD;
 
-    cout<<(x-y)%MOD<<endl;
+    cout<<(x+MOD-y)%MOD<<endl;
     return 0;
 }
 
