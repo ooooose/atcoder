@@ -7,26 +7,14 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     string S;cin>>S;
-    string T((int)S.size(), '.');
-    int cnt=0;
-    if(T[0]=='.')T[0]='o';
-    for(int i=0;i<(int)S.size();i++)
+    int N=S.size();
+    for(int i=0;i<N;i++)
     {
-        if(S[i]=='#')
-        {
-            T[i]='#';
-            cnt++;
-        }
-        else
-        {
-            if(cnt>=1)
-            {
-                T[i]='o';
-                cnt=0;
-            }
-        }
+        if(S[i]=='#')cout<<'#';
+        else if(i==0||S[i-1]=='#')cout<<'o';
+        else cout<<'.';
     }
-    cout<<T<<endl;
+    cout<<endl;
     return 0;
 }
 
