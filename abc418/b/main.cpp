@@ -1,45 +1,31 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define rep(i, n) for (int i = 0; i < (n); i++)
-// g++ -std=c++23 main.cpp
 
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     string S;cin>>S;
-    int start=0, goal=S.size();
-    for(int i=0;i<(int)S.size();i++)
-    {
-        if(S[i]=='t')
-        {
-            start=i;
-            break;
-        }
-    }
-    for(int i=S.size();i>0;i--)
-    {
-        if(S[i]=='t')
-        {
-            goal=i;
-            break;
-        }
-    }
-    double ans;
-    if(start==0&&goal==S.size())
-    {
-        ans=0;
-    }
-    else 
-    {
-        int t=goal-start+1;
-        int x=0;
-        for(int i=start;i<=goal;i++)
-        {
-            if(S[i]=='t')x++;
-        }
-        ans=(double)(x-2)/(t-2);
-    }
+    int N=S.size();
+    double ans=0.0;
 
+    vector<int> t_count(N+1, 0);
+    for(int i=0;i<N;i++) t_count[i+1]=t_count[i]+(S[i]=='t'?1:0);
+
+    for(int l=0;l<N;l++)
+    {
+        if(S[l]!='t') continue;
+        for(int r=l+2;r<N;r++) 
+        {
+            if(S[r]!='t') continue;
+            int x=t_count[r+1]-t_count[l];
+            int len=r-l+1;
+            if(x>=2) 
+            {
+                double fill=(double)(x-2)/(len-2);
+                ans=max(ans,fill);
+            }
+        }
+    }
     cout<<fixed<<setprecision(15)<<ans<<endl;
     return 0;
 }
