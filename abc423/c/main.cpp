@@ -9,25 +9,22 @@ int main() {
     int N,R;cin>>N>>R;
     vector<int> L(N);
     for(int i=0;i<N;i++)cin>>L[i];
-    int left=0,right=N;
-    for(int i=0;i<N;i++)if(L[i]==0)
+    R--;
+
+    int left=R,right=R;
+    for(int i=0;i<N;i++)
     {
-        left=i;
-        break;
+        if(L[i]==1) continue;
+        left=min(left,i-1);
+        right=max(right,i);
     }
-    for(int i=N-1;i>0;i--)if(L[i]==0)
+    int ans=0;
+    for(int i=left+1;i<=right;i++)
     {
-        right=i;
-        break;
-    }
-    int cnt=0;
-    for(int i=left;i<=right;i++)
-    {
-        if(L[i]==0)cnt++;
-        else if(L[i]==1)cnt+=2;
+        ans+=L[i]+1;
     }
 
-    cout<<cnt<<endl;
+    cout<<ans<<endl;
     return 0;
 }
 
