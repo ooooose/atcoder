@@ -10,23 +10,7 @@ int main() {
     while(T--)
     {
         int A,B,C;cin>>A>>B>>C;
-        int abc=min({A,B,C});
-        A-=abc;
-        B-=abc;
-        C-=abc;
-        int acc=0,aac=0;
-        if(A>C)
-        {
-            
-            if(A/2>C)aac=C;
-            else acc=A/2;
-        }
-        else
-        {
-            if(A<C/2)acc=A;
-            else acc=C/2;
-        }
-        cout<<abc+acc+aac<<endl;
+        cout<<min({A,C,(A+B+C)/3})<<endl;
     }
 
     return 0;
