@@ -25,7 +25,7 @@ int main() {
             }
             else
             {
-                if(dp[i-1][j-A[i]]) dp[i][j]=true;
+                if(dp[i-1][j]||dp[i-1][j-A[i]]) dp[i][j]=true;
                 else dp[i][j]=false;
             }
         }
