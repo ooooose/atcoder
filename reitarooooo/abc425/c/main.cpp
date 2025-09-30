@@ -1,14 +1,16 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define rep(i, n) for (int i = 0; i < (n); i++)
-// g++ -std=c++23 main.cpp
+using ll = long long;
 
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int N,Q;cin>>N>>Q;
     vector<int> A(N);
-    for(int i=0;i<N;i++) cin>>A[i];
+    vector<ll> sum(N+1);
+    for(int i=0;i<N;i++)cin>>A[i];
+    for(int i=0;i<N;i++)sum[i+1]=sum[i]+A[i];
 
     int offset=0;
     while(Q--)
@@ -19,19 +21,16 @@ int main() {
             int c;cin>>c;
             offset=(offset+c)%N;
         }
-        else if(q==2)
+        if(q==2)
         {
-            int l,r,ans=0;cin>>l>>r;
+            int l,r;cin>>l>>r;
             l--;r--;
+            ll ans;
             l=(l+offset)%N;
             r=(r+offset)%N;
-            if(l<=r)for(int i=l;i<=r;i++)ans+=A[i];
-            else
-            {
-                for(int i=l;i<N;i++)ans+=A[i];
-                for(int i=0;i<=r;i++)ans+=A[i];
-            }
-            cout<<ans<<endl;
+            if(l<=r)ans=sum[r+1]-sum[l];
+            else ans=sum[N]-(sum[l]-sum[r+1]);
+            cout<<ans<<'\n';
         }
     }
     
