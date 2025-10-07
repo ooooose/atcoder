@@ -8,19 +8,19 @@ int main() {
     cin.tie(nullptr);
     int N,Q;cin>>N>>Q;
 
-    map<int,int> mp;
-    for(int i=1;i<=N;i++) mp[i]=1;
-
+    vector<int> pc(N+1,1);
+    pc[0]=0;
+    int o=1;
     while(Q--)
     {
         int x,y;cin>>x>>y;
         int ans=0;
-        for(int i=1;i<=x;i++)
+        while(o<=x)
         {
-            ans+=mp[i];
-            mp[i]=0;
+            ans+=pc[o];
+            pc[y]+=pc[o];
+            o++;
         }
-        mp[y]+=ans;
         cout<<ans<<"\n";
     }
     
