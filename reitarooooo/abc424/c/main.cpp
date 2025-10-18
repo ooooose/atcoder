@@ -24,24 +24,19 @@ int main() {
     int N;cin>>N;
     Graph G(N+1);
     seen.resize(N+1);
-    vector<int> skills;
     for(int i=1;i<=N;i++)
     {
         int A,B;cin>>A>>B;
-        if(A==0&&B==0){ 
-            skills.push_back(i);
-            continue;
-        }
-        G[A].push_back(B);
-        G[B].push_back(A);
+        G[A].push_back(i);
+        G[B].push_back(i);
     }
 
-    for(int s: skills) dfs(G,s);
+    dfs(G,0);
 
     int cnt=0;
     for(bool s: seen)if(s)cnt++;
 
-    cout<<cnt<<endl;
+    cout<<cnt-1<<endl;
     return 0;
 }
 
