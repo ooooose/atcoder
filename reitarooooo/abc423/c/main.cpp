@@ -13,7 +13,7 @@ int main() {
 
     for(int i=0;i<N;i++)if(L[i]==0)open.push_back(i);
 
-    int r=N,l=0;
+    int l=N,r=0;
     for(int i=0;i<N;i++)if(L[i]==0)
     {
         l=i;
