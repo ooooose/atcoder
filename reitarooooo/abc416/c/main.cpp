@@ -3,26 +3,27 @@ using namespace std;
 #define rep(i, n) for (int i = 0; i < (n); i++)
 // g++ -std=c++23 main.cpp
 
-int main() {
-    int N,K;
-    long long X;
-    cin>>N>>K>>X;
-    vector<string> S(N);
-    for(int i=0;i<N;i++)cin>>S[i];
-    
-    sort(S.begin(),S.end());
-    
-    X--;
+int N,K,X;
+vector<string> ans,S;
 
-    vector<int> idx(K);
-    for(int i=K-1;i>=0;i--)
+void dfs(string cur,int count)
+{
+    if(count==K)
     {
-        idx[i]=X%N;
-        X/=N;
+        ans.push_back(cur);
+        return;
     }
 
-    string ans;
-    for (int i=0;i<K;i++)ans+=S[idx[i]];
-    cout<<ans<<endl;
+    for(string s: S)dfs(cur+s,count+1);
+}
+
+int main() {
+    cin>>N>>K>>X;
+    S.resize(N);
+    for(int i=0;i<N;i++)cin>>S[i];
+    
+    dfs("",0);
+    sort(ans.begin(),ans.end());
+    cout<<ans[X-1]<<endl;
     return 0;
 }
