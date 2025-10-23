@@ -9,7 +9,7 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int N;cin>>N;
-    vector<vector<int>> stones(N,vector<int>(N)), correct(N,vector<int>(N,-1));
+    vector<vector<int>> correct(N,vector<int>(N,-1));
 
     queue<pair<int,int>> q;
     int c=(N+1)/2;
