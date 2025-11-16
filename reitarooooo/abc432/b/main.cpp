@@ -7,16 +7,18 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     string A;cin>>A;
-    vector<int> B;
-    for(int i=0;i<3;i++)if(A[i]!='0')B.push_back(A[i]-'0');
-    sort(B.begin(),B.end());
-    int cnt=3-B.size();
+    sort(A.begin(),A.end());
 
-    cout<<B[0];
-    for(int i=0;i<cnt;i++)cout<<0;
-    for(int i=1;i<B.size();i++)cout<<B[i];
-    cout<<endl;
-    
+    for(int i=0;i<(int)A.size();i++)
+    {
+        if(A[i]>'0')
+        {
+            swap(A[0],A[i]);
+            break;
+        }
+    }
+
+    cout<<A<<endl;
     return 0;
 }
 
