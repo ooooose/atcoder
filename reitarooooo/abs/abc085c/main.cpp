@@ -9,16 +9,14 @@ int main() {
     int N,A;cin>>N>>A;
     for(int i=N;i>=0;i--)
     {
-        int sum=10000*i;
         for(int j=N-i;j>=0;j--)
         {
-            sum+=5000*j+1000*(N-i-j);
-            if(sum==A)
+            int k=N-i-j;
+            if(10000*i+5000*j+1000*k==A)
             {
-                cout<<i<<" "<<j<<" "<<N-i-j<<endl;
+                cout<<i<<" "<<j<<" "<<k<<endl;
                 return 0;
             }
-            sum-=5000*j+1000*(N-i-j);
         }
     }
 
