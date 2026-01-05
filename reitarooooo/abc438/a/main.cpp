@@ -8,7 +8,8 @@ int main() {
     cin.tie(nullptr);
     int D,F;cin>>D>>F;
 
-    cout<<F-D%7<<endl;
+    int day=F-D%7;
+    cout<<(day!=0?day:7)<<endl;
     return 0;
 }
 
