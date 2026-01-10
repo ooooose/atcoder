@@ -16,6 +16,8 @@ void solve()
         int d=T[i]-prev_t;
         l-=d; u+=d;
 
+        prev_t=T[i];
+
         l=max(l,L[i]);
         u=min(u,U[i]);
         
