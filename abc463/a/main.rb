@@ -1,7 +1,7 @@
 X, Y = gets.chomp.split(" ").map(&:to_i)
 
-sum = (X + Y) / 25
-target = X / 16
+sum = (X + Y) * 16
+target = X * 25 
 
 if target == sum
   puts "Yes"
